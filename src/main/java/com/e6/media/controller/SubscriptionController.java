@@ -14,7 +14,7 @@ public class SubscriptionController {
 
     @Autowired
     public SubscriptionController(SubscriptionService subscriptionService) {
-      (this.subscriptionService) = subscriptionService;
+      this.subscriptionService = subscriptionService;
     }
 
     @PostMapping
@@ -24,7 +24,7 @@ public class SubscriptionController {
 
     @GetMapping
     public Iterable<SubscriptionEntity> getSubscriptionsForUser(@PathVariable UUID userId) {
-        return(subscriptionService.getSubscriptionsForUser(userId));
+        return subscriptionService.getSubscriptionsForUser(userId);
     }
 
     @DeleteMapping("/{subId}")

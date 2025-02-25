@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS UserEntity(
+    userid UUID PRIMARY KEY,
+    name VARCHAR(255) NOT NULL);
+
+CREATE TABLE IF NOT EXISTS SubscriptionEntity(
+    id UUID PRIMARY KEY,
+    serviceName VARCHAR(255) NOT NULL),
+    user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE;
