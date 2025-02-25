@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Table(name = "users")
@@ -11,7 +12,7 @@ import java.util.Set;
 public class UserEntity {
     @Id
     @GeneratedValue(strategy =GenerationType.IDENTITY)
-    private Long userid;
+    private UUID userid;
 
     @Column(nullable = false)
     private String name;
@@ -19,11 +20,11 @@ public class UserEntity {
     @OneToMany(mappedBy = "user", cascade =CascadeType.ALL, orphanRemoval = true)
     private Set<SubscriptionEntity> subscriptions;
 
-    public Long getUserid() {
+    public UUID getUserid() {
         return userid;
     }
 
-    public void setUserid(Long userid) {
+    public void setUserid(UUID userid) {
         this.userid = userid;
     }
 

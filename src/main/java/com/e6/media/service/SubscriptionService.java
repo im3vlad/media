@@ -7,6 +7,8 @@ import com.e6.media.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class SubscriptionService {
     private final SubscriptionRepository subscriptionRepository;
@@ -18,18 +20,18 @@ public class SubscriptionService {
         (this.userRepository) = userRepository;
     }
 
-    public SubscriptionEntity addSubscription(Long userId, SubscriptionEntity subscription) {
-        UserEntity user =userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
-        subscription.setUser(user);
+    public SubscriptionEntity addSubscription(UUID userId, SubscriptionEntity subscription) {
+        UserEntity user = (UserEntity) userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        subscription.setId(userId);
         return(subscriptionRepository.save(subscription));
     }
 
-    public Iterable<SubscriptionEntity> getSubscriptionsForUser(Long userId) {
-        UserEntity user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+    public Iterable<SubscriptionEntity> getSubscriptionsForUser(UUID userId) {
+        UserEntity user = (UserEntity) userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
         return subscriptionRepository.findAllByUser(user);
     }
 
-    public void deleteSubscription(Long subId) {
+    public void deleteSubscription(UUID subId) {
        subscriptionRepository.deleteById(subId);
     }
 }

@@ -13,7 +13,7 @@ import java.util.UUID;
 public class SubscriptionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private UUID Id;
 
     @Column(nullable = false)
     private String serviceName;
@@ -22,12 +22,12 @@ public class SubscriptionEntity {
     @JoinColumn(name = "user_id")
     private UserEntity user;
 
-    public Long getId() {
+    public UUID getId() {
         return Id;
     }
 
-    public void setId(Long id) {
-        Id = id;
+    public void setId(UUID id) {
+        UUID uuid = UUID.randomUUID();
     }
 
     public String getServiceName() {
@@ -37,4 +37,5 @@ public class SubscriptionEntity {
     public void setServiceName(String serviceName) {
         this.serviceName = serviceName;
     }
+
 }
