@@ -1,29 +1,26 @@
-package com.e6.media.controller;
+package com.example.media.controller;
 
-import com.e6.media.model.entity.SubscriptionEntity;
-import com.e6.media.service.SubscriptionServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.media.model.dto.SubscriptionDto;
+import com.example.media.model.entity.SubscriptionEntity;
+import com.example.media.service.SubscriptionServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
 @RestController
 @RequestMapping("/users/{userId}/subscriptions")
+@RequiredArgsConstructor
 public class SubscriptionController {
     private final SubscriptionServiceImpl subscriptionService;
 
-    @Autowired
-    public SubscriptionController(SubscriptionServiceImpl subscriptionService) {
-      this.subscriptionService = subscriptionService;
-    }
-
     @PostMapping
-    public SubscriptionEntity addSubscription(@PathVariable UUID userId, @RequestBody SubscriptionEntity subscription) {
+    public SubscriptionEntity addSubscription(@PathVariable UUID userId, @RequestBody SubscriptionDto subscription) {
         return subscriptionService.addSubscription (userId, subscription);
     }
 
     @GetMapping
-    public Iterable<SubscriptionEntity> getSubscriptionsForUser(@PathVariable UUID userId) {
+    public SubscriptionDto getSubscriptionsForUser(@PathVariable UUID userId) {
         return subscriptionService.getSubscriptionsForUser(userId);
     }
 

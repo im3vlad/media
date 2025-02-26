@@ -1,4 +1,4 @@
-package com.e6.media;
+package com.example.media;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

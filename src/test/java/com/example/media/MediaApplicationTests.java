@@ -1,4 +1,4 @@
-package com.e6.media;
+package com.example.media;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
