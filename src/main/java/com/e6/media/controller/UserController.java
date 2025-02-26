@@ -1,8 +1,9 @@
 package com.e6.media.controller;
 
 
+import com.e6.media.model.dto.UserDto;
 import com.e6.media.model.entity.UserEntity;
-import com.e6.media.service.UserService;
+import com.e6.media.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,16 +12,17 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/users")
 public class UserController {
-    private final UserService userService;
+    private final UserServiceImpl userService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserServiceImpl userService) {
        (this.userService) = userService;
     }
 
     @PostMapping
-    public UserEntity createUser(@RequestBody UserEntity user) {
-        return userService.createUser(user);
+    public void createUser(@RequestBody UserDto userDto) {
+       userService.createUser(userDto);
+
     }
 
     @GetMapping("/{id}")
@@ -29,8 +31,8 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public void updateUser(@PathVariable UUID id, @RequestBody UserEntity updatedUser) {
-         userService.updateUser(updatedUser);
+    public void updateUser(@PathVariable UUID id, @RequestBody UserDto userDto) {
+         userService.updateUser(userDto);
     }
 
     @DeleteMapping("/{id}")

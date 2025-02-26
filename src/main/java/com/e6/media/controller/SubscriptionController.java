@@ -1,7 +1,7 @@
 package com.e6.media.controller;
 
 import com.e6.media.model.entity.SubscriptionEntity;
-import com.e6.media.service.SubscriptionService;
+import com.e6.media.service.SubscriptionServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,10 +10,10 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/users/{userId}/subscriptions")
 public class SubscriptionController {
-    private final SubscriptionService subscriptionService;
+    private final SubscriptionServiceImpl subscriptionService;
 
     @Autowired
-    public SubscriptionController(SubscriptionService subscriptionService) {
+    public SubscriptionController(SubscriptionServiceImpl subscriptionService) {
       this.subscriptionService = subscriptionService;
     }
 
