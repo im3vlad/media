@@ -1,8 +1,12 @@
+CREATE DATABASE subscription_db
+
 CREATE TABLE IF NOT EXISTS users(
     userid UUID PRIMARY KEY,
-    name VARCHAR(255) NOT NULL);
+    name VARCHAR(255) NOT NULL
+);
 
 CREATE TABLE IF NOT EXISTS subscriptions(
     id UUID PRIMARY KEY,
-    serviceName VARCHAR(255) NOT NULL),
-    user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE;
+    serviceName VARCHAR(255) NOT NULL,
+    user_id UUID REFERENCES users(userid) ON DELETE CASCADE
+);
